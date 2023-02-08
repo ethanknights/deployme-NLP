@@ -4,6 +4,7 @@
 
 import re
 from nltk.corpus import wordnet
+import json
 
 # Building a list of Keywords
 list_words=['hello','timings']
@@ -38,13 +39,11 @@ for intent, keys in keywords.items():
 print (keywords_dict)
 
 
-
 # Building a dictionary of responses
-responses={
-    'greet':'Hello! How can I help you?',
-    'timings':'We are open from 9AM to 5PM, Monday to Friday. We are closed on weekends and public holidays.',
-    'fallback':'I dont quite understand. Could you repeat that?',
-}
+with open('responses.json') as f:
+    parameters = json.load(f)
+responses = parameters['responses'][0]
+
 
 print ("Welcome to the Bank. How may I help you?")
 # While loop to run the chatbot indefinetely
